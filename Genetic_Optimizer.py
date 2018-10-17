@@ -51,18 +51,18 @@ class GeneticOptimizer:
         sorted_list = list(reversed(sorted(self.generation_score_list)))
         #print(sorted_list)
         #print(self.generation_score_list)
-        for x in sorted_list[:25]:
+        for x in sorted_list[:50]:
             index = self.generation_score_list.index(x)
             next_gen_list.append((copy.deepcopy(self.generation_list[index])))
-        for x in range(0,75):
-            random_A = rand.randint(0, 25)
-            random_B = rand.randint(0, 25)
+        for x in range(0,50):
+            random_A = rand.randint(0, 10)
+            random_B = rand.randint(0, 10)
             #print(random_A)
             indexA = self.generation_score_list.index(sorted_list[random_A])
             indexB = self.generation_score_list.index(sorted_list[random_B])
             next_gen_list.append((self.perform_crossovers(copy.deepcopy(self.generation_list[indexA]),copy.deepcopy(self.generation_list[indexB]))))
-        for x in sorted_list[:25]:
-            for y in range(0, 2):
+        for x in sorted_list[:50]:
+            for y in range(0, 3):
                 index = self.generation_score_list.index(x)
                 next_gen_list.append(self.perform_mutaions((copy.deepcopy(self.generation_list[index]))))
         #print('the important stuff' + str(self.generation_score_list))
@@ -128,13 +128,13 @@ class GeneticOptimizer:
             print('W1: '+str(np.array(weighs[x]['W1']).flatten('F')))
             print('b1: '+ str(np.array(weighs[x]['b1']).flatten('F')))
 
-gen = GeneticOptimizer([16,24,8,4],150)
+gen = GeneticOptimizer([16,24,16,8,4],250)
 begin = time.time()
 #gen.print_weights(gen.generation_list[0])
 #print(gen.print_weights(gen.generation_list))
 
 
-for x in range(1,10):
+for x in range(1,2000):
     print('generation ' + str(x)  + ' = ')
     gen.run_generation()
     #print(gen.generation_score_list)

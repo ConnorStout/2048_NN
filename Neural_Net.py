@@ -69,17 +69,17 @@ class Neural_Net:
             one_d = [i[0] for i in AL]
             #print(one_d)
             maxpos = one_d.index(max(one_d))
-
             check = q.take_turn(maxpos)
+            if(q.finished == True):
+                break
             if(check == False):
                 #print('turn failed')
-                    q.endStep()
-                    break
+                #q.endStep()
+                break
 
-            #print('new_board = ' + str(list(np.array(q.board).ravel())))
+            #print('new_board = ' + str(list(np.np.array(q.board).ravel())))
             new_board = self.getFlattenedArr(q.board)
             prev_board = new_board
         prev_board = []
 
         return q.score
-
